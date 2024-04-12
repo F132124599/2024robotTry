@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import pabeles.concurrency.IntOperatorTask.Min;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -16,12 +18,49 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+  public final class intakeConstants {
+    public static final double intakeArmPID_Kp = 0;
+    public static final double intakeArmPID_Ki = 0;
+    public static final double intakeArmPID_Kd = 0;
 
-  public static final double intakeArmPID_Kp = 0;
-  public static final double intakeArmPID_Ki = 0;
-  public static final double intakeArmPID_Kd = 0;
+    public static final double intakeCancoderOffset = 0;
 
-  public static final double intakeCancoderOffset = 0;
+    public static final double intakewheelVoltage = 0;
 
-  public static final double intakewheelVoltage = 0;
+    public static final double intakeArmArriveAngle = 0;
+
+    public static final double intakeArmMaxOutPut = 0;
+
+    public static final double arriveAngle = 0;
+
+    public static final int intakeWheel_ID = 0;
+
+    public static final int intakeArm_ID = 0;
+
+    public static final int absoluteArmEncoderID = 0;
+}
+  public final class shooterConstants {
+    public static final int shooterMotor_ID = 0;
+
+    public static final int absoluteEncoder_ID = 0;
+
+    public static final double absoluteEncoderOffset = 0;
+
+    public static final double shootVoltage = 0;
+  }
+  public final class climberConstants {
+    public static final int leftClimberMotor_ID = 0;
+
+    public static final int rightClimberMotor_ID = 0;
+
+    public static final double climbVoltage = 0;
+  }
+  public final class indexerConstants {
+    public static final int indexerMotor_ID = 0;
+    
+  }
+
+  public static double setMaxOutPut(double outPut, double maxOutPut){
+    return Math.min(maxOutPut, Math.max(-maxOutPut, outPut));
+  }
 }

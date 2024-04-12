@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Constants.intakeConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new IntakeSubsystem. */
@@ -29,25 +30,25 @@ public class IntakeSubsystem extends SubsystemBase {
   private final RelativeEncoder armEncoder;
   private final CANcoder absoluteArmEncoder;
 
-  private final CANcoderConfiguration canCoderConfig;
+  private final CANcoderConfiguration absoluteEncoderConfig;
 
   private  double pidOutput;
 
   private  double arriveAngle;
-  public IntakeSubsystem(int intakeWheelID, int intakeArmID, int absoluteArmEncoderID) {
-    intakeWheel = new CANSparkMax(intakeWheelID, MotorType.kBrushless);
-    intakeArm = new CANSparkMax(intakeArmID, MotorType.kBrushless);
+  public IntakeSubsystem() {
+    intakeWheel = new CANSparkMax(intakeConstants.intakeWheel_ID, MotorType.kBrushless);
+    intakeArm = new CANSparkMax(intakeConstants.intakeArm_ID, MotorType.kBrushless);
 
-    armPID = new PIDController(Constants.intakeArmPID_Kp, Constants.intakeArmPID_Ki, Constants.intakeArmPID_Kd);
+    armPID = new PIDController(intakeConstants.intakeArmPID_Kp, intakeConstants.intakeArmPID_Ki, intakeConstants.intakeArmPID_Kd);
 
     armEncoder = intakeArm.getEncoder();
-    absoluteArmEncoder = new CANcoder(absoluteArmEncoderID);
-    canCoderConfig = new CANcoderConfiguration();
+    absoluteArmEncoder = new CANcoder(intakeConstants.absoluteArmEncoderID);
+    absoluteEncoderConfig = new CANcoderConfiguration();
 
-    canCoderConfig.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive;
-    canCoderConfig.MagnetSensor.MagnetOffset = Constants.intakeCancoderOffset;
-    canCoderConfig.MagnetSensor.AbsoluteSensorRange = AbsoluteSensorRangeValue.Signed_PlusMinusHalf;
-    absoluteArmEncoder.getConfigurator().apply(canCoderConfig);
+    absoluteEncoderConfig.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive;
+    absoluteEncoderConfig.MagnetSensor.MagnetOffset = intakeConstants.intakeCancoderOffset;
+    absoluteEncoderConfig.MagnetSensor.AbsoluteSensorRange = AbsoluteSensorRangeValue.Signed_PlusMinusHalf;
+    absoluteArmEncoder.getConfigurator().apply(absoluteEncoderConfig);
 
     intakeWheel.restoreFactoryDefaults();
     intakeArm.restoreFactoryDefaults();
@@ -61,27 +62,40 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeWheel.burnFlash();
     intakeArm.burnFlash();
 
+    setArriveAngle(intakeConstants.intakeArmArriveAngle);
   }
 
   public void noteintake(){
-    intakeWheel.setVoltage(Constants.intakewheelVoltage);
-    intakeArm.setVoltage(5);
+    intakeWheel.setVoltage(intakeConstants.intakewheelVoltage);
+    intakeArm.setVoltage(pidOutput);
+  }
 
+  public void stopIntake(){
+    intakeWheel.setVoltage(0);
+  }
+
+  public void raiseArm(){
+    intakeArm.setVoltage(pidOutput);
+  }
+
+  public void noteOut(){
+    intakeWheel.setVoltage(-intakeConstants.intakewheelVoltage);
   }
 
   public void setArriveAngle(double angle){
     arriveAngle = angle;
   }
 
-  public void getAngle(){
-    absoluteArmEncoder.getPosition();
+  public double getAngle(){
+    return absoluteArmEncoder.getPosition().getValueAsDouble()*360;
   }
+
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    pidOutput = armPID.calculate(5);
-    SmartDashboard.putNumber("sfe", arriveAngle);
+    pidOutput = armPID.calculate(getAngle(), arriveAngle);
+    pidOutput = Constants.setMaxOutPut(pidOutput, intakeConstants.intakeArmMaxOutPut);
     
   }
 }
