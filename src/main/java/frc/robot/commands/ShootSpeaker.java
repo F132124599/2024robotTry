@@ -5,14 +5,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.ClimberSubaystem;
+import frc.robot.Constants;
+import frc.robot.subsystems.IndexerSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
-public class ClimbUp extends Command {
-  /** Creates a new climbUp. */
-  private final ClimberSubaystem climberSubsystem;
-  public ClimbUp() {
+public class ShootSpeaker extends Command {
+  /** Creates a new ShootSpeaker. */
+  private final ShooterSubsystem shooterSubsystem;
+
+  private final IndexerSubsystem indexerSubsystem;
+  public ShootSpeaker() {
     // Use addRequirements() here to declare subsystem dependencies.
-    climberSubsystem = new ClimberSubaystem();
+    shooterSubsystem = new ShooterSubsystem();
+    indexerSubsystem = new IndexerSubsystem();
   }
 
   // Called when the command is initially scheduled.
@@ -22,13 +27,16 @@ public class ClimbUp extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    climberSubsystem.climbUp();
+    shooterSubsystem.shootSpeaker();
+    if(Constants.ifFeed == true && shooterSubsystem.SpeakerSpeedArrive())
+    indexerSubsystem.feedNote();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    climberSubsystem.stopClimb();
+    shooterSubsystem.stopShoot();
+    indexerSubsystem.stopIndexer();
   }
 
   // Returns true when the command should end.

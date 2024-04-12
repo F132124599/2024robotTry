@@ -5,14 +5,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.ClimberSubaystem;
 
-public class ClimbUp extends Command {
-  /** Creates a new climbUp. */
-  private final ClimberSubaystem climberSubsystem;
-  public ClimbUp() {
+public class ThrowNoteAway extends Command {
+  /** Creates a new ThrowNoteAway. */
+  public ThrowNoteAway() {
     // Use addRequirements() here to declare subsystem dependencies.
-    climberSubsystem = new ClimberSubaystem();
   }
 
   // Called when the command is initially scheduled.
@@ -21,19 +18,20 @@ public class ClimbUp extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    climberSubsystem.climbUp();
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    climberSubsystem.stopClimb();
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
+  }
+
+  @Override
+  public String toString() {
+    return "ThrowNoteAway []";
   }
 }

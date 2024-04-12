@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Constants.intakeConstants;
+import frc.robot.Constants.IntakeConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new IntakeSubsystem. */
@@ -36,17 +36,17 @@ public class IntakeSubsystem extends SubsystemBase {
 
   private  double arriveAngle;
   public IntakeSubsystem() {
-    intakeWheel = new CANSparkMax(intakeConstants.intakeWheel_ID, MotorType.kBrushless);
-    intakeArm = new CANSparkMax(intakeConstants.intakeArm_ID, MotorType.kBrushless);
+    intakeWheel = new CANSparkMax(IntakeConstants.intakeWheel_ID, MotorType.kBrushless);
+    intakeArm = new CANSparkMax(IntakeConstants.intakeArm_ID, MotorType.kBrushless);
 
-    armPID = new PIDController(intakeConstants.intakeArmPID_Kp, intakeConstants.intakeArmPID_Ki, intakeConstants.intakeArmPID_Kd);
+    armPID = new PIDController(IntakeConstants.intakeArmPID_Kp, IntakeConstants.intakeArmPID_Ki, IntakeConstants.intakeArmPID_Kd);
 
     armEncoder = intakeArm.getEncoder();
-    absoluteArmEncoder = new CANcoder(intakeConstants.absoluteArmEncoderID);
+    absoluteArmEncoder = new CANcoder(IntakeConstants.absoluteArmEncoderID);
     absoluteEncoderConfig = new CANcoderConfiguration();
 
     absoluteEncoderConfig.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive;
-    absoluteEncoderConfig.MagnetSensor.MagnetOffset = intakeConstants.intakeCancoderOffset;
+    absoluteEncoderConfig.MagnetSensor.MagnetOffset = IntakeConstants.intakeCancoderOffset;
     absoluteEncoderConfig.MagnetSensor.AbsoluteSensorRange = AbsoluteSensorRangeValue.Signed_PlusMinusHalf;
     absoluteArmEncoder.getConfigurator().apply(absoluteEncoderConfig);
 
@@ -62,31 +62,31 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeWheel.burnFlash();
     intakeArm.burnFlash();
 
-    setArriveAngle(intakeConstants.intakeArmArriveAngle);
+    setArriveAngle(IntakeConstants.intakeArmArriveAngle);
   }
 
-  public void noteintake(){
-    intakeWheel.setVoltage(intakeConstants.intakewheelVoltage);
+  public void noteIntake() {
+    intakeWheel.setVoltage(IntakeConstants.intakewheelVoltage);
     intakeArm.setVoltage(pidOutput);
   }
 
-  public void stopIntake(){
+  public void stopIntake() {
     intakeWheel.setVoltage(0);
   }
 
-  public void raiseArm(){
+  public void raiseArm() {
     intakeArm.setVoltage(pidOutput);
   }
 
-  public void noteOut(){
-    intakeWheel.setVoltage(-intakeConstants.intakewheelVoltage);
+  public void noteOut() {
+    intakeWheel.setVoltage(-IntakeConstants.intakewheelVoltage);
   }
 
-  public void setArriveAngle(double angle){
+  public void setArriveAngle(double angle) {
     arriveAngle = angle;
   }
 
-  public double getAngle(){
+  public double getAngle() {
     return absoluteArmEncoder.getPosition().getValueAsDouble()*360;
   }
 
@@ -95,7 +95,7 @@ public class IntakeSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     pidOutput = armPID.calculate(getAngle(), arriveAngle);
-    pidOutput = Constants.setMaxOutPut(pidOutput, intakeConstants.intakeArmMaxOutPut);
+    pidOutput = Constants.setMaxOutPut(pidOutput, IntakeConstants.intakeArmMaxOutPut);
     
   }
 }

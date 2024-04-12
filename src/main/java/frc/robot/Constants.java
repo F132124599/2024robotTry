@@ -18,7 +18,7 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
-  public final class intakeConstants {
+  public final class IntakeConstants {
     public static final double intakeArmPID_Kp = 0;
     public static final double intakeArmPID_Ki = 0;
     public static final double intakeArmPID_Kd = 0;
@@ -39,26 +39,40 @@ public final class Constants {
 
     public static final int absoluteArmEncoderID = 0;
 }
-  public final class shooterConstants {
+  public final class ShooterConstants {
     public static final int shooterMotor_ID = 0;
 
     public static final int absoluteEncoder_ID = 0;
 
     public static final double absoluteEncoderOffset = 0;
 
-    public static final double shootVoltage = 0;
+    public static final double shootAMPVoltage = 0;
+
+    public static final double shootSpeakerVoltage = 0;
+
+    public static final double passNoteVoltage = 0;
+
+    public static final double speedAMP = 0;
+
+    public static final double speedSpeaker = 0;
+
+    public static final double speedPassNote = 0;
   }
-  public final class climberConstants {
+  public final class ClimberConstants {
     public static final int leftClimberMotor_ID = 0;
 
     public static final int rightClimberMotor_ID = 0;
 
     public static final double climbVoltage = 0;
   }
-  public final class indexerConstants {
+  public final class IndexerConstants {
     public static final int indexerMotor_ID = 0;
+
+    public static final double indexerVoltage = 0;
     
   }
+
+  public static  boolean ifFeed = false;
 
   public static double setMaxOutPut(double outPut, double maxOutPut){
     return Math.min(maxOutPut, Math.max(-maxOutPut, outPut));

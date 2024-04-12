@@ -9,7 +9,7 @@ import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.climberConstants;
+import frc.robot.Constants.ClimberConstants;
 
 public class ClimberSubaystem extends SubsystemBase {
   /** Creates a new climberSubaystem. */
@@ -17,8 +17,8 @@ public class ClimberSubaystem extends SubsystemBase {
   private final CANSparkMax rightClimberMotor;
 
   public ClimberSubaystem() {
-    leftClimberMotor = new CANSparkMax(climberConstants.leftClimberMotor_ID, MotorType.kBrushless);
-    rightClimberMotor = new CANSparkMax(climberConstants.leftClimberMotor_ID, MotorType.kBrushless);
+    leftClimberMotor = new CANSparkMax(ClimberConstants.leftClimberMotor_ID, MotorType.kBrushless);
+    rightClimberMotor = new CANSparkMax(ClimberConstants.leftClimberMotor_ID, MotorType.kBrushless);
 
     leftClimberMotor.restoreFactoryDefaults();
     rightClimberMotor.restoreFactoryDefaults();
@@ -34,16 +34,16 @@ public class ClimberSubaystem extends SubsystemBase {
   }
 
   public void climbUp() {
-    leftClimberMotor.setVoltage(climberConstants.climbVoltage);
-    rightClimberMotor.setVoltage(climberConstants.climbVoltage);
+    leftClimberMotor.setVoltage(ClimberConstants.climbVoltage);
+    rightClimberMotor.setVoltage(ClimberConstants.climbVoltage);
   }
 
   public void climberDown() {
-    leftClimberMotor.setVoltage(-climberConstants.climbVoltage);
-    rightClimberMotor.setVoltage(-climberConstants.climbVoltage);
+    leftClimberMotor.setVoltage(-ClimberConstants.climbVoltage);
+    rightClimberMotor.setVoltage(-ClimberConstants.climbVoltage);
   }
 
-  public void stopClimb(){
+  public void stopClimb() {
     leftClimberMotor.setVoltage(0);
     rightClimberMotor.setVoltage(0);
   }

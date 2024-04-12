@@ -14,7 +14,7 @@ import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.shooterConstants;
+import frc.robot.Constants.ShooterConstants;
 
 public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new shooterSubsystem. */
@@ -26,16 +26,16 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private final RelativeEncoder shooterMotorEncoder;
   public ShooterSubsystem() {
-    shooterMotor = new CANSparkMax(shooterConstants.shooterMotor_ID, MotorType.kBrushless);
+    shooterMotor = new CANSparkMax(ShooterConstants.shooterMotor_ID, MotorType.kBrushless);
 
-    absoluteEncoder = new CANcoder(shooterConstants.shooterMotor_ID);
+    absoluteEncoder = new CANcoder(ShooterConstants.shooterMotor_ID);
 
     absoluteEncoderConfig = new CANcoderConfiguration();
 
     shooterMotorEncoder = shooterMotor.getEncoder();
 
     absoluteEncoderConfig.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive;
-    absoluteEncoderConfig.MagnetSensor.MagnetOffset = shooterConstants.absoluteEncoderOffset;
+    absoluteEncoderConfig.MagnetSensor.MagnetOffset = ShooterConstants.absoluteEncoderOffset;
     absoluteEncoderConfig.MagnetSensor.AbsoluteSensorRange = AbsoluteSensorRangeValue.Signed_PlusMinusHalf;
 
     absoluteEncoder.getConfigurator().apply(absoluteEncoderConfig);
@@ -49,12 +49,48 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMotor.burnFlash();
   }
 
-  public void shoot(){
-    shooterMotor.setVoltage(shooterConstants.shootVoltage);
+  public void shootAMP() {
+    shooterMotor.setVoltage(ShooterConstants.shootAMPVoltage);
   }
 
-  public void stopShoot(){
+  public void shootSpeaker() {
+    shooterMotor.setVoltage(ShooterConstants.shootSpeakerVoltage);
+  }
+
+  public void passNote() {
+    shooterMotor.setVoltage(ShooterConstants.passNoteVoltage);
+  }
+
+  public void stopShoot() {
     shooterMotor.setVoltage(0);
+  }
+
+  public double getShooterSpeed() {
+    return shooterMotorEncoder.getVelocity();
+  }
+
+  public boolean AMPspeedArrive() {
+    if(getShooterSpeed()>= ShooterConstants.speedAMP) {
+      return true;
+    }else {
+      return false;
+    }
+  }
+
+  public boolean SpeakerSpeedArrive() {
+    if(getShooterSpeed()>= ShooterConstants.speedSpeaker) {
+      return true;
+    }else {
+      return false;
+    }
+  }
+
+  public boolean passNoteSpeedArrive() {
+    if(getShooterSpeed()>= ShooterConstants.speedPassNote) {
+      return true;
+    }else {
+      return false;
+    }
   }
 
   @Override
