@@ -9,10 +9,11 @@ import frc.robot.subsystems.ClimberSubaystem;
 
 public class ClimbDown extends Command {
   /** Creates a new climbDown. */
-  private final ClimberSubaystem climberSubaystem;
-  public ClimbDown() {
+  private final ClimberSubaystem m_climberSubaystem;
+  public ClimbDown(ClimberSubaystem climberSubaystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    climberSubaystem = new ClimberSubaystem();
+    m_climberSubaystem = climberSubaystem;
+    addRequirements(m_climberSubaystem);
   }
 
   // Called when the command is initially scheduled.
@@ -22,13 +23,13 @@ public class ClimbDown extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    climberSubaystem.climberDown();
+    m_climberSubaystem.climberDown();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    climberSubaystem.stopClimb();
+    m_climberSubaystem.stopClimb();
   }
 
   // Returns true when the command should end.

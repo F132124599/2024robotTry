@@ -30,8 +30,4 @@ public class ThrowNoteAway extends Command {
     return false;
   }
 
-  @Override
-  public String toString() {
-    return "ThrowNoteAway []";
-  }
 }
