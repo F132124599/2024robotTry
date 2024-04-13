@@ -15,13 +15,14 @@ public class ClimberSubaystem extends SubsystemBase {
   /** Creates a new climberSubaystem. */
   private final CANSparkMax leftClimberMotor;
   private final CANSparkMax rightClimberMotor;
+  
 
   /*
    * 要加極限開關
    */
   public ClimberSubaystem() {
     leftClimberMotor = new CANSparkMax(ClimberConstants.leftClimberMotor_ID, MotorType.kBrushless);
-    rightClimberMotor = new CANSparkMax(ClimberConstants.leftClimberMotor_ID, MotorType.kBrushless);
+    rightClimberMotor = new CANSparkMax(ClimberConstants.rightClimberMotor_ID, MotorType.kBrushless);
 
     leftClimberMotor.restoreFactoryDefaults();
     rightClimberMotor.restoreFactoryDefaults();

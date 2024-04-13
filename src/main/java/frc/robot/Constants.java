@@ -28,7 +28,6 @@ public final class Constants {
     public static final double intakewheelVoltage = 0;
 
     public static final double intakeArmArriveAngle = 0;
-
     public static final double intakeArmMaxOutPut = 0;
 
     public static final double arriveAngle = 0;
@@ -38,29 +37,23 @@ public final class Constants {
     public static final int intakeArm_ID = 0;
 
     public static final int absoluteArmEncoderID = 0;
-}
+  }
   public final class ShooterConstants {
     public static final int shooterMotor_ID = 0;
-
     public static final int absoluteEncoder_ID = 0;
 
     public static final double absoluteEncoderOffset = 0;
 
     public static final double shootAMPVoltage = 0;
-
     public static final double shootSpeakerVoltage = 0;
-
     public static final double passNoteVoltage = 0;
 
     public static final double speedAMP = 0;
-
     public static final double speedSpeaker = 0;
-
     public static final double speedPassNote = 0;
   }
   public final class ClimberConstants {
     public static final int leftClimberMotor_ID = 0;
-
     public static final int rightClimberMotor_ID = 0;
 
     public static final double climbVoltage = 0;
@@ -69,7 +62,6 @@ public final class Constants {
     public static final int indexerMotor_ID = 0;
 
     public static final double indexerVoltage = 0;
-    
   }
 
   public static  boolean ifFeed = false;

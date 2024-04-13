@@ -95,7 +95,6 @@ public class IntakeSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     pidOutput = armPID.calculate(getAngle(), arriveAngle);
-    pidOutput = Constants.setMaxOutPut(pidOutput, IntakeConstants.intakeArmMaxOutPut);
-    
+    pidOutput = Constants.setMaxOutPut(pidOutput, IntakeConstants.intakeArmMaxOutPut); 
   }
 }

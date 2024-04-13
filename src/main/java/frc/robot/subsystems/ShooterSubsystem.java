@@ -42,7 +42,7 @@ public class ShooterSubsystem extends SubsystemBase {
  
     shooterMotor.restoreFactoryDefaults();
 
-    shooterMotor.setIdleMode(IdleMode.kBrake);
+    shooterMotor.setIdleMode(IdleMode.kCoast);
 
     shooterMotor.setInverted(true);
 
