@@ -16,6 +16,9 @@ public class ClimberSubaystem extends SubsystemBase {
   private final CANSparkMax leftClimberMotor;
   private final CANSparkMax rightClimberMotor;
 
+  /*
+   * 要加極限開關
+   */
   public ClimberSubaystem() {
     leftClimberMotor = new CANSparkMax(ClimberConstants.leftClimberMotor_ID, MotorType.kBrushless);
     rightClimberMotor = new CANSparkMax(ClimberConstants.leftClimberMotor_ID, MotorType.kBrushless);
@@ -26,6 +29,7 @@ public class ClimberSubaystem extends SubsystemBase {
     leftClimberMotor.setIdleMode(IdleMode.kBrake);
     rightClimberMotor.setIdleMode(IdleMode.kBrake);
 
+    //記得到時候要測方向
     leftClimberMotor.setInverted(true);
     rightClimberMotor.setInverted(true);
 

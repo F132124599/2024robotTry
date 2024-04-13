@@ -30,6 +30,7 @@ public class ThrowNoteAway extends Command {
     return false;
   }
 
+  //你們這個要幹嘛
   @Override
   public String toString() {
     return "ThrowNoteAway []";
