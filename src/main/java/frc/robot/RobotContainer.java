@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.Constants.RobotContainerConstants;
 import frc.robot.subsystems.ClimberSubaystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -12,6 +13,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 
 import java.util.function.BooleanSupplier;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -25,16 +27,13 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ClimberSubaystem climberSubaystem = new ClimberSubaystem();
-
   private final IndexerSubsystem indexerSubsystem = new IndexerSubsystem();
-
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
+  private final XboxController driveController = new XboxController(RobotContainerConstants.XboxController_ID);
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -54,7 +53,9 @@ public class RobotContainer {
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
-    BooleanSupplier a = ()-> m_driverController.getHID().getAButton();
+
+
+  
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
   }

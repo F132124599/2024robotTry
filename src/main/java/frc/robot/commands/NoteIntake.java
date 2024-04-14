@@ -10,21 +10,24 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 public class NoteIntake extends Command {
   /** Creates a new NoteIntake. */
-  private final IntakeSubsystem intakeSubsystem;
+  private final IntakeSubsystem m_intakeSubsystem;
 
-  private final IndexerSubsystem indexerSubsystem;
+  private final IndexerSubsystem m_indexerSubsystem;
 
-  public NoteIntake() {
+  public NoteIntake(IntakeSubsystem intakeSubsystem, IndexerSubsystem indexerSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    intakeSubsystem = new IntakeSubsystem();
-    indexerSubsystem = new IndexerSubsystem();
+    this.m_intakeSubsystem = intakeSubsystem;
+    this.m_indexerSubsystem = indexerSubsystem;
+
+    addRequirements(m_intakeSubsystem, m_indexerSubsystem);
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intakeSubsystem.noteIntake();
-    indexerSubsystem.intakeNote();
+    m_intakeSubsystem.noteIntake();
+    m_indexerSubsystem.intakeNote();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,8 +37,8 @@ public class NoteIntake extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intakeSubsystem.stopIntake();
-    indexerSubsystem.stopIndexer();
+    m_intakeSubsystem.stopIntake();
+    m_indexerSubsystem.stopIndexer();
   }
 
   // Returns true when the command should end.

@@ -8,14 +8,19 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IndexerConstants;
 
 public class IndexerSubsystem extends SubsystemBase {
   /** Creates a new indexerSubsystem. */
   private final CANSparkMax indexerMotor;
+
+  private final DigitalInput bottomSwitch;
   public IndexerSubsystem() {
     indexerMotor = new CANSparkMax(IndexerConstants.indexerMotor_ID, MotorType.kBrushless);
+
+    bottomSwitch = new DigitalInput(IndexerConstants.bottomSwitch_ID);
 
     indexerMotor.restoreFactoryDefaults();
 
@@ -37,6 +42,10 @@ public class IndexerSubsystem extends SubsystemBase {
   
   public void stopIndexer() {
     indexerMotor.setVoltage(0);
+  }
+
+  public boolean getBottomSwitch(){
+    return !bottomSwitch.get();
   }
 
   @Override

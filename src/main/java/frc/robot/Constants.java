@@ -40,9 +40,6 @@ public final class Constants {
   }
   public final class ShooterConstants {
     public static final int shooterMotor_ID = 0;
-    public static final int absoluteEncoder_ID = 0;
-
-    public static final double absoluteEncoderOffset = 0;
 
     public static final double shootAMPVoltage = 0;
     public static final double shootSpeakerVoltage = 0;
@@ -56,15 +53,19 @@ public final class Constants {
     public static final int leftClimberMotor_ID = 0;
     public static final int rightClimberMotor_ID = 0;
 
-    public static final double climbVoltage = 0;
+    public static final double climbUpVoltage = 0;
+    public static final double climbDownVoltage = 0;
   }
   public final class IndexerConstants {
     public static final int indexerMotor_ID = 0;
 
+    public static final int bottomSwitch_ID = 0;
+
     public static final double indexerVoltage = 0;
   }
-
-  public static  boolean ifFeed = false;
+  public final class RobotContainerConstants {
+    public static final int XboxController_ID = 0;
+  }
 
   public static double setMaxOutPut(double outPut, double maxOutPut){
     return Math.min(maxOutPut, Math.max(-maxOutPut, outPut));

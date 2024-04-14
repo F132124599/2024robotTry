@@ -12,33 +12,37 @@ import frc.robot.subsystems.ShooterSubsystem;
 
 public class passNote extends Command {
   /** Creates a new passNote. */
-  private final ShooterSubsystem shooterSubsystem;
+  private final ShooterSubsystem m_shooterSubsystem;
   
-  private final IndexerSubsystem indexerSubsystem;
-  public passNote() {
+  private final IndexerSubsystem m_indexerSubsystem;
+  public passNote(ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    shooterSubsystem = new ShooterSubsystem();
-    indexerSubsystem = new IndexerSubsystem();
+    this.m_shooterSubsystem = shooterSubsystem;
+    this.m_indexerSubsystem = indexerSubsystem;
+
+    addRequirements(m_shooterSubsystem, m_indexerSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_shooterSubsystem.passNote();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooterSubsystem.passNote();
-    if(Constants.ifFeed && shooterSubsystem.passNoteSpeedArrive()) {
-      indexerSubsystem.feedNote();
+    m_shooterSubsystem.passNote();
+    if(Constants.ifFeed && m_shooterSubsystem.passNoteSpeedArrive()) {
+      m_indexerSubsystem.feedNote();
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooterSubsystem.stopShoot();
-    indexerSubsystem.stopIndexer();
+    m_shooterSubsystem.stopShoot();
+    m_indexerSubsystem.stopIndexer();
   }
 
   // Returns true when the command should end.

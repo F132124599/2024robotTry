@@ -20,25 +20,12 @@ public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new shooterSubsystem. */
   private final CANSparkMax shooterMotor;
 
-  private final CANcoder absoluteEncoder;
-
-  private final CANcoderConfiguration absoluteEncoderConfig;
-
   private final RelativeEncoder shooterMotorEncoder;
   public ShooterSubsystem() {
     shooterMotor = new CANSparkMax(ShooterConstants.shooterMotor_ID, MotorType.kBrushless);
 
-    absoluteEncoder = new CANcoder(ShooterConstants.shooterMotor_ID);
-
-    absoluteEncoderConfig = new CANcoderConfiguration();
-
     shooterMotorEncoder = shooterMotor.getEncoder();
 
-    absoluteEncoderConfig.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive;
-    absoluteEncoderConfig.MagnetSensor.MagnetOffset = ShooterConstants.absoluteEncoderOffset;
-    absoluteEncoderConfig.MagnetSensor.AbsoluteSensorRange = AbsoluteSensorRangeValue.Signed_PlusMinusHalf;
-
-    absoluteEncoder.getConfigurator().apply(absoluteEncoderConfig);
  
     shooterMotor.restoreFactoryDefaults();
 

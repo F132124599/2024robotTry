@@ -11,32 +11,35 @@ import frc.robot.subsystems.ShooterSubsystem;
 
 public class ShootSpeaker extends Command {
   /** Creates a new ShootSpeaker. */
-  private final ShooterSubsystem shooterSubsystem;
+  private final ShooterSubsystem m_shooterSubsystem;
 
-  private final IndexerSubsystem indexerSubsystem;
-  public ShootSpeaker() {
+  private final IndexerSubsystem m_indexerSubsystem;
+  public ShootSpeaker(ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    shooterSubsystem = new ShooterSubsystem();
-    indexerSubsystem = new IndexerSubsystem();
+    this.m_shooterSubsystem = shooterSubsystem;
+    this.m_indexerSubsystem = indexerSubsystem;
+
+    addRequirements(m_shooterSubsystem, m_indexerSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_shooterSubsystem.shootSpeaker();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooterSubsystem.shootSpeaker();
-    if(Constants.ifFeed == true && shooterSubsystem.SpeakerSpeedArrive())
-    indexerSubsystem.feedNote();
+    if(Constants.ifFeed == true && m_shooterSubsystem.SpeakerSpeedArrive())
+    m_indexerSubsystem.feedNote();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooterSubsystem.stopShoot();
-    indexerSubsystem.stopIndexer();
+    m_shooterSubsystem.stopShoot();
+    m_indexerSubsystem.stopIndexer();
   }
 
   // Returns true when the command should end.

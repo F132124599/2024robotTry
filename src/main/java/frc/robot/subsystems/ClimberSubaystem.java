@@ -39,13 +39,13 @@ public class ClimberSubaystem extends SubsystemBase {
   }
 
   public void climbUp() {
-    leftClimberMotor.setVoltage(ClimberConstants.climbVoltage);
-    rightClimberMotor.setVoltage(ClimberConstants.climbVoltage);
+    leftClimberMotor.setVoltage(ClimberConstants.climbUpVoltage);
+    rightClimberMotor.setVoltage(ClimberConstants.climbUpVoltage);
   }
 
   public void climberDown() {
-    leftClimberMotor.setVoltage(-ClimberConstants.climbVoltage);
-    rightClimberMotor.setVoltage(-ClimberConstants.climbVoltage);
+    leftClimberMotor.setVoltage(-ClimberConstants.climbDownVoltage);
+    rightClimberMotor.setVoltage(-ClimberConstants.climbDownVoltage);
   }
 
   public void stopClimb() {
