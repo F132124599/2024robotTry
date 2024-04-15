@@ -64,7 +64,7 @@ public final class Constants {
     public static final double indexerVoltage = 0;
   }
   public final class RobotContainerConstants {
-    public static final int XboxController_ID = 0;
+    public static final int CommandXboxController_ID = 0;
   }
 
   public static double setMaxOutPut(double outPut, double maxOutPut){

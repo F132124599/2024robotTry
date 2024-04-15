@@ -12,6 +12,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -31,7 +32,7 @@ public class RobotContainer {
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
-  private final XboxController driveController = new XboxController(RobotContainerConstants.XboxController_ID);
+  private final CommandXboxController driveController = new CommandXboxController(RobotContainerConstants.CommandXboxController_ID);
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
 
@@ -52,6 +53,14 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
+    DoubleSupplier xFuncSpeed = ()-> driveController.getRawAxis(0);
+    DoubleSupplier yFuncSpeed = ()-> driveController.getRawAxis(0);
+    DoubleSupplier zFuncSpeed = ()-> driveController.getRawAxis(0);
+
+    BooleanSupplier ifFeed = ()-> driveController.a().getAsBoolean();
+
+
+    driveController.b().whileTrue();
 
 
 
