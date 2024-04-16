@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.IndexerSubsystem;
@@ -14,10 +16,14 @@ public class ShootAMP extends Command {
   private final ShooterSubsystem m_shooterSubsystem;
 
   private final IndexerSubsystem m_indexerSubsystem;
-  public ShootAMP(ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem) {
+
+  private BooleanSupplier ifFeed;
+  public ShootAMP(ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem, BooleanSupplier ifFeed) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.m_shooterSubsystem = shooterSubsystem;
     this.m_indexerSubsystem = indexerSubsystem;
+
+    this.ifFeed = ifFeed;
 
     addRequirements(m_shooterSubsystem, m_indexerSubsystem);
   }
@@ -31,7 +37,7 @@ public class ShootAMP extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Constants.ifFeed == true && m_shooterSubsystem.AMPspeedArrive()){
+    if( m_shooterSubsystem.ifAMPspeedArrive() && ifFeed.getAsBoolean()){
       m_indexerSubsystem.feedNote();
     }
   }

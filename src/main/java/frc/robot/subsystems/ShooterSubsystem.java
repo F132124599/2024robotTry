@@ -56,7 +56,7 @@ public class ShooterSubsystem extends SubsystemBase {
     return shooterMotorEncoder.getVelocity();
   }
 
-  public boolean AMPspeedArrive() {
+  public boolean ifAMPspeedArrive() {
     if(getShooterSpeed()>= ShooterConstants.speedAMP) {
       return true;
     }else {
@@ -64,7 +64,7 @@ public class ShooterSubsystem extends SubsystemBase {
     }
   }
 
-  public boolean SpeakerSpeedArrive() {
+  public boolean ifSpeakerSpeedArrive() {
     if(getShooterSpeed()>= ShooterConstants.speedSpeaker) {
       return true;
     }else {
@@ -72,7 +72,7 @@ public class ShooterSubsystem extends SubsystemBase {
     }
   }
 
-  public boolean passNoteSpeedArrive() {
+  public boolean ifPassNoteSpeedArrive() {
     if(getShooterSpeed()>= ShooterConstants.speedPassNote) {
       return true;
     }else {

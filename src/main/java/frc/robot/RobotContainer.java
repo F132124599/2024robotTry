@@ -6,6 +6,11 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.RobotContainerConstants;
+import frc.robot.commands.Climb;
+import frc.robot.commands.NoteIntake;
+import frc.robot.commands.ShootAMP;
+import frc.robot.commands.ShootSpeaker;
+import frc.robot.commands.ThrowNoteAway;
 import frc.robot.subsystems.ClimberSubaystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -53,17 +58,19 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    DoubleSupplier xFuncSpeed = ()-> driveController.getRawAxis(0);
-    DoubleSupplier yFuncSpeed = ()-> driveController.getRawAxis(0);
-    DoubleSupplier zFuncSpeed = ()-> driveController.getRawAxis(0);
+    DoubleSupplier rightClimbSpeed = ()-> driveController.getRawAxis(0);
+    DoubleSupplier leftClimbSpeed = ()-> driveController.getRawAxis(0);
 
-    BooleanSupplier ifFeed = ()-> driveController.a().getAsBoolean();
+    BooleanSupplier ifFeed = ()-> driveController.y().getAsBoolean();
 
+    driveController.x().whileTrue(new NoteIntake(intakeSubsystem, indexerSubsystem));
+    driveController.a().whileTrue(new ThrowNoteAway(intakeSubsystem));
+    driveController.rightBumper().whileTrue(new ShootSpeaker(shooterSubsystem, indexerSubsystem, ifFeed));
+    driveController.leftBumper().whileTrue(new ShootAMP(shooterSubsystem, indexerSubsystem, ifFeed));
 
-    driveController.b().whileTrue();
+    Climb climb = new Climb(climberSubaystem, leftClimbSpeed, rightClimbSpeed);
 
-
-
+    climberSubaystem.setDefaultCommand(climb);
   
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.

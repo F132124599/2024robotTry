@@ -24,20 +24,17 @@ public final class Constants {
     public static final double intakeArmPID_Kd = 0;
 
     public static final double intakeCancoderOffset = 0;
-
     public static final double intakewheelVoltage = 0;
 
     public static final double intakeArmArriveAngle = 0;
     public static final double intakeArmMaxOutPut = 0;
-
     public static final double arriveAngle = 0;
 
     public static final int intakeWheel_ID = 0;
-
     public static final int intakeArm_ID = 0;
-
     public static final int absoluteArmEncoderID = 0;
   }
+
   public final class ShooterConstants {
     public static final int shooterMotor_ID = 0;
 
@@ -49,6 +46,7 @@ public final class Constants {
     public static final double speedSpeaker = 0;
     public static final double speedPassNote = 0;
   }
+
   public final class ClimberConstants {
     public static final int leftClimberMotor_ID = 0;
     public static final int rightClimberMotor_ID = 0;
@@ -56,13 +54,18 @@ public final class Constants {
     public static final double climbUpVoltage = 0;
     public static final double climbDownVoltage = 0;
   }
+  
   public final class IndexerConstants {
     public static final int indexerMotor_ID = 0;
-
     public static final int bottomSwitch_ID = 0;
 
     public static final double indexerVoltage = 0;
   }
+
+  public final class SwerveContants{
+
+  }
+
   public final class RobotContainerConstants {
     public static final int CommandXboxController_ID = 0;
   }

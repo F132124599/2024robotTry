@@ -10,12 +10,12 @@ import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class passNote extends Command {
+public class PassNote extends Command {
   /** Creates a new passNote. */
   private final ShooterSubsystem m_shooterSubsystem;
   
   private final IndexerSubsystem m_indexerSubsystem;
-  public passNote(ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem) {
+  public PassNote(ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.m_shooterSubsystem = shooterSubsystem;
     this.m_indexerSubsystem = indexerSubsystem;
@@ -33,7 +33,7 @@ public class passNote extends Command {
   @Override
   public void execute() {
     m_shooterSubsystem.passNote();
-    if(Constants.ifFeed && m_shooterSubsystem.passNoteSpeedArrive()) {
+    if( m_shooterSubsystem.ifPassNoteSpeedArrive()) {
       m_indexerSubsystem.feedNote();
     }
   }

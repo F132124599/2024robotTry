@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
@@ -14,22 +15,13 @@ import frc.robot.Constants.IndexerConstants;
 
 public class IndexerSubsystem extends SubsystemBase {
   /** Creates a new indexerSubsystem. */
-  private final CANSparkMax indexerMotor;
+  private final TalonFX indexerMotor;
 
   private final DigitalInput bottomSwitch;
   public IndexerSubsystem() {
-    indexerMotor = new CANSparkMax(IndexerConstants.indexerMotor_ID, MotorType.kBrushless);
+    indexerMotor = new TalonFX(IndexerConstants.indexerMotor_ID);
 
     bottomSwitch = new DigitalInput(IndexerConstants.bottomSwitch_ID);
-
-    indexerMotor.restoreFactoryDefaults();
-
-    indexerMotor.setIdleMode(IdleMode.kBrake);
-
-    indexerMotor.setInverted(true);
-
-    indexerMotor.burnFlash();
-
   }
 
   public void intakeNote() {

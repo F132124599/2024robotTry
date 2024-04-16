@@ -4,15 +4,21 @@
 
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ClimberSubaystem;
 
-public class ClimbUp extends Command {
+public class Climb extends Command {
   /** Creates a new climbUp. */
   private final ClimberSubaystem m_climberSubsystem;
-  public ClimbUp(ClimberSubaystem climberSubaystem) {
+  private DoubleSupplier leftClimbSpeed;
+  private DoubleSupplier rightClimbSpeed;
+  public Climb(ClimberSubaystem climberSubaystem, DoubleSupplier leftClimbSpeed, DoubleSupplier rightClimbSpeed) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.m_climberSubsystem = climberSubaystem; 
+    this.leftClimbSpeed = leftClimbSpeed;
+    this.rightClimbSpeed = rightClimbSpeed;
 
     addRequirements(m_climberSubsystem);
   }
@@ -20,13 +26,13 @@ public class ClimbUp extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_climberSubsystem.climbUp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+    m_climberSubsystem.leftClimb(leftClimbSpeed.getAsDouble());
+    m_climberSubsystem.rightClimb(rightClimbSpeed.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.

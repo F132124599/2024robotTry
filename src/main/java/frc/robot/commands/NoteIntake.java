@@ -28,6 +28,7 @@ public class NoteIntake extends Command {
   public void initialize() {
     m_intakeSubsystem.noteIntake();
     m_indexerSubsystem.intakeNote();
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
