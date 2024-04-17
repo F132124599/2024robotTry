@@ -11,7 +11,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ClimberConstants;
 
-public class ClimberSubaystem extends SubsystemBase {
+public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new climberSubaystem. */
   private final CANSparkMax leftClimberMotor;
   private final CANSparkMax rightClimberMotor;
@@ -20,7 +20,7 @@ public class ClimberSubaystem extends SubsystemBase {
   /*
    * 要加極限開關
    */
-  public ClimberSubaystem() {
+  public ClimberSubsystem() {
     leftClimberMotor = new CANSparkMax(ClimberConstants.leftClimberMotor_ID, MotorType.kBrushless);
     rightClimberMotor = new CANSparkMax(ClimberConstants.rightClimberMotor_ID, MotorType.kBrushless);
 
