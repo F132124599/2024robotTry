@@ -62,12 +62,11 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeWheel.burnFlash();
     intakeArm.burnFlash();
 
-    setArriveAngle(IntakeConstants.intakeArmArriveAngle);
   }
 
   public void noteIntake() {
     intakeWheel.setVoltage(IntakeConstants.intakewheelVoltage);
-    intakeArm.setVoltage(pidOutput);
+    arriveAngle = IntakeConstants.arriveDownAngle;
   }
 
   public void stopIntake() {
@@ -75,15 +74,11 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void raiseArm() {
-    intakeArm.setVoltage(pidOutput);
+    arriveAngle = IntakeConstants.arriveUpAngle;
   }
 
   public void noteOut() {
     intakeWheel.setVoltage(-IntakeConstants.intakewheelVoltage);
-  }
-
-  public void setArriveAngle(double angle) {
-    arriveAngle = angle;
   }
 
   public double getAngle() {
@@ -96,5 +91,7 @@ public class IntakeSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
     pidOutput = armPID.calculate(getAngle(), arriveAngle);
     pidOutput = Constants.setMaxOutPut(pidOutput, IntakeConstants.intakeArmMaxOutPut); 
+
+    intakeArm.setVoltage(pidOutput);
   }
 }

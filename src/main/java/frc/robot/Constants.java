@@ -28,7 +28,8 @@ public final class Constants {
 
     public static final double intakeArmArriveAngle = 0;
     public static final double intakeArmMaxOutPut = 0;
-    public static final double arriveAngle = 0;
+    public static final double arriveDownAngle = 0;
+    public static final double arriveUpAngle = 0;
 
     public static final int intakeWheel_ID = 0;
     public static final int intakeArm_ID = 0;
