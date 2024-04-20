@@ -64,8 +64,12 @@ public class IntakeSubsystem extends SubsystemBase {
 
   }
 
+  //為甚麼要把intake的setpoint寫在這
   public void noteIntake() {
     intakeWheel.setVoltage(IntakeConstants.intakewheelVoltage);
+  }
+
+  public void DownArm() {
     arriveAngle = IntakeConstants.arriveDownAngle;
   }
 

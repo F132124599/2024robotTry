@@ -9,6 +9,7 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
@@ -30,14 +31,14 @@ public class ShootSpeaker extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_shooterSubsystem.shootSpeaker();
+    m_shooterSubsystem.shoot(ShooterConstants.shootSpeakerVoltage);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if(m_shooterSubsystem.ifSpeakerSpeedArrive() && ifFeed.getAsBoolean()){
-    m_indexerSubsystem.feedNote();
+    m_indexerSubsystem.startMotor();
     }
   }
 

@@ -16,6 +16,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants;
 
+
 public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new shooterSubsystem. */
   private final CANSparkMax shooterMotor;
@@ -26,26 +27,14 @@ public class ShooterSubsystem extends SubsystemBase {
 
     shooterMotorEncoder = shooterMotor.getEncoder();
 
- 
     shooterMotor.restoreFactoryDefaults();
-
     shooterMotor.setIdleMode(IdleMode.kCoast);
-
     shooterMotor.setInverted(true);
-
     shooterMotor.burnFlash();
   }
 
-  public void shootAMP() {
-    shooterMotor.setVoltage(ShooterConstants.shootAMPVoltage);
-  }
-
-  public void shootSpeaker() {
-    shooterMotor.setVoltage(ShooterConstants.shootSpeakerVoltage);
-  }
-
-  public void passNote() {
-    shooterMotor.setVoltage(ShooterConstants.passNoteVoltage);
+  public void shoot(double Speed) {
+    shooterMotor.setVoltage(Speed);
   }
 
   public void stopShoot() {

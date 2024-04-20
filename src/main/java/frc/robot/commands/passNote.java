@@ -26,15 +26,15 @@ public class PassNote extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_shooterSubsystem.passNote();
+    m_shooterSubsystem.shoot(ShooterConstants.passNoteVoltage);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_shooterSubsystem.passNote();
+    m_shooterSubsystem.shoot(ShooterConstants.passNoteVoltage);;
     if( m_shooterSubsystem.ifPassNoteSpeedArrive()) {
-      m_indexerSubsystem.feedNote();
+      m_indexerSubsystem.startMotor();
     }
   }
 

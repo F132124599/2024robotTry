@@ -12,7 +12,9 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IndexerConstants;
-
+/**
+ * 把intakeNote和feedNote變成一個funtion
+ */
 public class IndexerSubsystem extends SubsystemBase {
   /** Creates a new indexerSubsystem. */
   private final TalonFX indexerMotor;
@@ -24,11 +26,7 @@ public class IndexerSubsystem extends SubsystemBase {
     bottomSwitch = new DigitalInput(IndexerConstants.bottomSwitch_ID);
   }
 
-  public void intakeNote() {
-    indexerMotor.setVoltage(IndexerConstants.indexerVoltage);
-  }
-
-  public void feedNote() {
+  public void startMotor() {
     indexerMotor.setVoltage(IndexerConstants.indexerVoltage);
   }
   

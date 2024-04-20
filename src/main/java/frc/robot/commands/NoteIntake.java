@@ -26,7 +26,8 @@ public class NoteIntake extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_indexerSubsystem.intakeNote();
+    m_indexerSubsystem.startMotor();
+    m_intakeSubsystem.DownArm();
     m_intakeSubsystem.noteIntake();
   }
 
