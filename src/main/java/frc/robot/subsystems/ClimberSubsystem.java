@@ -56,7 +56,6 @@ public class ClimberSubsystem extends SubsystemBase {
     rightClimberMotor.setVoltage(0);
   }
 
-  public void 
 
   @Override
   public void periodic() {

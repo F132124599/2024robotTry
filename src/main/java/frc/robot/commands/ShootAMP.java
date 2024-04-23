@@ -41,6 +41,7 @@ public class ShootAMP extends Command {
     if( m_shooterSubsystem.ifAMPspeedArrive() && ifFeed.getAsBoolean()){
       m_indexerSubsystem.startMotor();
     }
+    //加個else吧
   }
 
   // Called once the command ends or is interrupted.
