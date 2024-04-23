@@ -21,6 +21,7 @@ public class IndexerSubsystem extends SubsystemBase {
 
   private final DigitalInput bottomSwitch;
   public IndexerSubsystem() {
+    //你的馬達正反轉呢
     indexerMotor = new TalonFX(IndexerConstants.indexerMotor_ID);
 
     bottomSwitch = new DigitalInput(IndexerConstants.bottomSwitch_ID);

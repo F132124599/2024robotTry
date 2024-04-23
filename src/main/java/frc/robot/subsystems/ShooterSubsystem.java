@@ -33,6 +33,7 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterMotor.burnFlash();
   }
 
+  //為甚麼變數是大寫
   public void shoot(double Speed) {
     shooterMotor.setVoltage(Speed);
   }
@@ -45,6 +46,7 @@ public class ShooterSubsystem extends SubsystemBase {
     return shooterMotorEncoder.getVelocity();
   }
 
+  //底下的三個funtion可以變同一個吧
   public boolean ifAMPspeedArrive() {
     if(getShooterSpeed()>= ShooterConstants.speedAMP) {
       return true;

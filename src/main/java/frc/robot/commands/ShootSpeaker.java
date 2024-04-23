@@ -38,8 +38,10 @@ public class ShootSpeaker extends Command {
   @Override
   public void execute() {
     if(m_shooterSubsystem.ifSpeakerSpeedArrive() && ifFeed.getAsBoolean()){
+      //你很會縮排ㄟ
     m_indexerSubsystem.startMotor();
     }
+    //加個else吧
   }
 
   // Called once the command ends or is interrupted.

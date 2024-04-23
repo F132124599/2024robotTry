@@ -64,7 +64,6 @@ public class IntakeSubsystem extends SubsystemBase {
 
   }
 
-  //為甚麼要把intake的setpoint寫在這
   public void noteIntake() {
     intakeWheel.setVoltage(IntakeConstants.intakewheelVoltage);
   }
@@ -85,6 +84,7 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeWheel.setVoltage(-IntakeConstants.intakewheelVoltage);
   }
 
+  //你現在讀的是Relative的值
   public double getAngle() {
     return absoluteArmEncoder.getPosition().getValueAsDouble()*360;
   }

@@ -9,13 +9,13 @@ import frc.robot.Constants;
 import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-
-public class PassNote extends Command {
+//把檔案名稱第一個字改大寫
+public class passNote extends Command {
   /** Creates a new passNote. */
   private final ShooterSubsystem m_shooterSubsystem;
   
   private final IndexerSubsystem m_indexerSubsystem;
-  public PassNote(ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem) {
+  public passNote(ShooterSubsystem shooterSubsystem, IndexerSubsystem indexerSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.m_shooterSubsystem = shooterSubsystem;
     this.m_indexerSubsystem = indexerSubsystem;
@@ -32,10 +32,12 @@ public class PassNote extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //這行要幹嘛
     m_shooterSubsystem.shoot(ShooterConstants.passNoteVoltage);;
     if( m_shooterSubsystem.ifPassNoteSpeedArrive()) {
       m_indexerSubsystem.startMotor();
     }
+    //加個else吧
   }
 
   // Called once the command ends or is interrupted.

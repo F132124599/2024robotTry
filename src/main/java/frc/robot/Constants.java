@@ -26,6 +26,7 @@ public final class Constants {
     public static final double intakeCancoderOffset = 0;
     public static final double intakewheelVoltage = 0;
 
+    //ntakeArmArriveAngle是要幹嘛的
     public static final double intakeArmArriveAngle = 0;
     public static final double intakeArmMaxOutPut = 0;
     public static final double arriveDownAngle = 0;
@@ -43,6 +44,7 @@ public final class Constants {
     public static final double shootSpeakerVoltage = 0;
     public static final double passNoteVoltage = 0;
 
+    //把變數改成名詞，不要用動詞
     public static final double speedAMP = 0;
     public static final double speedSpeaker = 0;
     public static final double speedPassNote = 0;

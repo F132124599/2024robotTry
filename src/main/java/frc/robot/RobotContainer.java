@@ -71,6 +71,7 @@ public class RobotContainer {
     // Climb climb = new Climb(climberSubaystem, leftClimbSpeed, rightClimbSpeed);
 
     // climberSubaystem.setDefaultCommand(climb);
+    //setDefaultCommand寫在robotcontainer裡面
     m_climberSubsystem.setDefaultCommand(new VerticalMovement(m_climberSubsystem, leftClimbSpeed, rightClimbSpeed));
     
   
